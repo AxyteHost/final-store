@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Segoe+UI:wght@400;600;700&display=swap');
+
+:root {
+    --bg-dark: #050505;
+    --bg-card: #0a0a0a;
+    --primary: #dc2626; /* RuneMC Red */
+    --primary-hover: #ef4444;
+    --green: #22c55e; /* Bright Green */
+    --text-main: #ffffff;
+    --border: #222;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { 
+    background-color: var(--bg-dark); color: var(--text-main); 
+    display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; 
+}
+
+/* LOADING SCREEN */
+#loader-wrapper {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 9999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: opacity 0.5s ease-out;
+}
+.spinner {
+    width: 60px; height: 60px;
+    border: 5px solid #222; border-top: 5px solid var(--primary);
+    border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+}
+.loading-text { font-family: 'Russo One'; letter-spacing: 2px; animation: pulse 1.5s infinite; }
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-entry { animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+.delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; }
+
+/* NAVBAR */
+.navbar { 
+    background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
+    padding: 1rem 2rem; border-bottom: 2px solid var(--primary); 
+    display: flex; justify-content: space-between; align-items: center; 
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+.logo { 
+    font-family: 'Russo One', sans-serif; font-size: 2rem; 
+    color: var(--primary); text-transform: uppercase; letter-spacing: 2px; 
+    text-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+}
+.user-info { display: flex; align-items: center; gap: 10px; font-weight: bold; background: #111; padding: 5px 15px; border-radius: 20px; border: 1px solid #333; }
+.user-info img { border-radius: 50%; border: 2px solid var(--primary); }
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), var(--bg-dark)), url('https://wallpapers.com/images/hd/minecraft-pvp-background-d0d0d0.jpg');
+    background-size: cover; background-position: center; 
+    padding: 100px 20px; text-align: center; border-bottom: 1px solid var(--border);
+}
+.hero h1 { 
+    font-family: 'Russo One'; font-size: 3.5rem; color: white; margin-bottom: 15px; 
+    text-transform: uppercase; text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+.hero p { color: #ddd; font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+/* FEATURES (CENTER FIX) */
+.features { 
+    display: flex; 
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 30px; 
+    padding: 40px 20px; 
+    flex-wrap: wrap; 
+    background: #080808; 
+    border-bottom: 1px solid var(--border); 
+}
+.feature-box { 
+    text-align: center; 
+    width: 100%;
+    max-width: 300px; /* Fixed width */
+    padding: 20px; 
+    background: #111; 
+    border-radius: 10px; 
+    border: 1px solid #222; 
+    transition: 0.3s;
+    margin: 10px; /* Space around */
+}
+.feature-box:hover { transform: translateY(-5px); border-color: var(--primary); }
+.feature-box h3 { color: var(--primary); margin-bottom: 10px; font-family: 'Russo One'; }
+
+/* CONTAINER */
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; flex: 1; width: 100%; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+/* CARDS */
+.card { 
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 15px; 
+    overflow: hidden; display: flex; flex-direction: column; transition: 0.3s;
+}
+.card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2); }
+.card-header img { width: 100%; height: 200px; object-fit: cover; }
+.card-body { padding: 25px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+.card-title { font-size: 1.5rem; margin-bottom: 10px; color: white; font-family: 'Russo One'; }
+.card-price { color: var(--primary); font-weight: bold; font-size: 1.4rem; margin-bottom: 20px; }
+
+/* BUTTONS */
+.btn { 
+    display: inline-block; width: 100%; padding: 15px; border: none; border-radius: 8px; 
+    font-weight: bold; cursor: pointer; text-align: center; color: white; background: #222; 
+    text-transform: uppercase; transition: 0.3s; font-family: 'Russo One'; letter-spacing: 1px;
+}
+.btn-primary { background: linear-gradient(45deg, #b91c1c, #dc2626); }
+.btn-primary:hover { background: linear-gradient(45deg, #dc2626, #ef4444); box-shadow: 0 0 20px rgba(220, 38, 38, 0.6); }
+
+/* SPECIAL ADMIN BUTTONS */
+.btn-tick { background: var(--green); color: black; padding: 8px 15px; width: auto; font-size: 1.2rem; }
+.btn-tick:hover { background: #4ade80; transform: scale(1.1); }
+
+.btn-cross { background: var(--primary); color: white; padding: 8px 15px; width: auto; font-size: 1.2rem; }
+.btn-cross:hover { background: #ff0000; transform: scale(1.1); }
+
+/* FORMS */
+.checkout-box { background: #0f0f0f; padding: 30px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 25px; }
+.form-control { width: 100%; padding: 15px; background: #050505; border: 1px solid #333; color: white; border-radius: 8px; outline: none; }
+.form-control:focus { border-color: var(--primary); }
+
+/* UPLOAD */
+.qr-area { background: white; padding: 10px; border-radius: 10px; width: 200px; margin: 0 auto 20px auto; }
+.qr-area img { width: 100%; height: auto; }
+.file-upload-wrapper { 
+    position: relative; width: 100%; height: 60px; border: 2px dashed #444; 
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; 
+    cursor: pointer; transition: 0.3s; background: #080808;
+}
+.file-upload-wrapper:hover { border-color: var(--primary); background: #1a0505; }
+.file-upload-wrapper input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 50px 20px; background: #020202; border-top: 2px solid var(--primary); margin-top: auto; }
+.footer a { color: #666; margin: 0 15px; text-decoration: none; font-weight: bold; }
+.footer a:hover { color: var(--primary); }
+
+/* ADMIN TABLES (FIXED) */
+.table-container { 
+    overflow-x: auto; 
+    border: 1px solid #333; 
+    border-radius: 10px;
+    background: #080808;
+}
+.table { 
+    width: 100%; 
+    min-width: 700px; /* Forces scroll on mobile, preventing squish */
+    border-collapse: collapse; 
+}
+.table th, .table td { padding: 15px; border-bottom: 1px solid #333; text-align: left; vertical-align: middle; }
+.table th { background: #111; color: var(--primary); font-family: 'Russo One'; }
+.status-badge { padding: 5px 10px; border-radius: 20px; font-weight: bold; }
+
+@media (max-width: 600px) {
+    .navbar { flex-direction: column; gap: 15px; }
+    .hero h1 { font-size: 2.2rem; }
+    .features { flex-direction: column; }
+    .feature-box { margin: 0 auto 20px auto; } /* Center perfectly on mobile */
+}
